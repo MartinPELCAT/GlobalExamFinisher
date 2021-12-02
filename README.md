@@ -16,3 +16,9 @@ for (let index = 0; index < 40; index++) {
   }, index * 1000, index);
 }
 ```
+
+## Avant
+![image](https://user-images.githubusercontent.com/35460122/144404419-ae1cc48c-07b0-4c9e-aa30-9f1e92e1c454.png)
+
+## Après
+![image](https://user-images.githubusercontent.com/35460122/144404442-ae381abb-6d83-4138-8367-f97be99fc83b.png)
