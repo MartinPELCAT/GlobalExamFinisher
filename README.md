@@ -1,26 +1,89 @@
 # GlobalExamFinisher
-Script pour faire les 3 heures et 10 activités de Global Exam
 
-Sur la page https://exam.global-exam.com/library/study-sheets/categories/grammar
-**Si un seul s'ouvre, il faut Autoriser chrome a ouvrir plusieurs popups**
+Sur la page "Parcours"
 
-![image](https://user-images.githubusercontent.com/35460122/148954012-f4f83c34-31d8-41f7-87d0-90b16008c224.png)
+Il faut peut etre augmenter la valeur du timeout apres le lignes ci-dessous
+
+```
+btn.click();
+activityTimeout = null;
+```
 
 
 Dans la console : 
 ```javascript
-const buttons = document.querySelectorAll("a.button-solid-primary-small");
-for (let index = 0; index < 40; index++) {
-  setTimeout((idx) => {
-    window.open(buttons[idx].href);
-  }, index * 1000, index);
-}
+const button = document.querySelector(
+  ".button-outline-default-medium, .button-solid-primary-medium"
+);
+button.click();
+var body = document.body;
+
+var config = {
+  childList: true,
+  subtree: true
+};
+
+let activityTimeout = null;
+let startAcivityObserver = new MutationObserver(function (mutations) {
+  mutations.forEach(function () {
+    if (activityTimeout) clearTimeout(activityTimeout);
+    activityTimeout = setTimeout(function () {
+      const btnss = document.querySelectorAll(".button-solid-primary-large");
+      const btns = Array.from(btnss);
+      const btn = btns[0];
+      const quit = document.querySelector('a[href="/"]')
+      if (quit) {
+        quit.click()
+        startAcivityObserver.disconnect();
+        restartObserver.observe(body, config);
+        activityTimeout = null;
+        return;
+      }
+      btn.click();
+      activityTimeout = null;
+    }, 2000);
+  });
+});
+
+let restartTimeout = null;
+let restartObserver = new MutationObserver(function (mutations) {
+  mutations.forEach(function () {
+    if (restartTimeout) clearTimeout(restartTimeout);
+    restartTimeout = setTimeout(function () {
+
+      document.querySelector('span[data-title="Parcours"]').click();
+      restartObserver.disconnect();
+      setTimeout(function () {
+        const btn = document.querySelector(
+          ".button-outline-default-medium, .button-solid-primary-medium"
+        );
+        btn.click();
+        setTimeout(function () {
+          startAcivityObserver.observe(body, config);
+        }, 1000);
+      }, 1000);
+    }, 500);
+  });
+});
+
+
+let pageTimeout = null;
+let changePageObserver = new MutationObserver(function (mutations) {
+  mutations.forEach(function () {
+    if (pageTimeout) {
+      clearTimeout(pageTimeout);
+    }
+    pageTimeout = setTimeout(function () {
+      changePageObserver.disconnect();
+      document.querySelector(".button-solid-primary-large").click();
+      setTimeout(function () {
+        startAcivityObserver.observe(body, config);
+      }, 1000);
+    }, 1000);
+  });
+});
+
+changePageObserver.observe(body, config);
 ```
 
 ![image](https://user-images.githubusercontent.com/35460122/148954134-fb887381-0166-4ce1-83f9-2e6ee8e21522.png)
-
-
-| Avant      | Après |
-| ----------- | ----------- |
-| ![image](https://user-images.githubusercontent.com/35460122/144404419-ae1cc48c-07b0-4c9e-aa30-9f1e92e1c454.png)| ![image](https://user-images.githubusercontent.com/35460122/144404442-ae381abb-6d83-4138-8367-f97be99fc83b.png) |
- 
