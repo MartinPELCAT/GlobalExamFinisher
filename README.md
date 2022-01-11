@@ -4,7 +4,8 @@ Script pour faire les 3 heures et 10 activités de Global Exam
 Sur la page https://exam.global-exam.com/library/study-sheets/categories/grammar
 **Si un seul s'ouvre, il faut Autoriser chrome a ouvrir plusieurs popups**
 
-![image](https://user-images.githubusercontent.com/35460122/144402666-d2b8535e-f0ca-47c5-8049-82a0545f4e52.png)
+![image](https://user-images.githubusercontent.com/35460122/148954012-f4f83c34-31d8-41f7-87d0-90b16008c224.png)
+
 
 Dans la console : 
 ```javascript
@@ -15,6 +16,9 @@ for (let index = 0; index < 40; index++) {
   }, index * 1000, index);
 }
 ```
+
+![image](https://user-images.githubusercontent.com/35460122/148954134-fb887381-0166-4ce1-83f9-2e6ee8e21522.png)
+
 
 | Avant      | Après |
 | ----------- | ----------- |
