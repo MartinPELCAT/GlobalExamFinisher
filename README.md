@@ -28,9 +28,7 @@ let startAcivityObserver = new MutationObserver(function (mutations) {
   mutations.forEach(function () {
     if (activityTimeout) clearTimeout(activityTimeout);
     activityTimeout = setTimeout(function () {
-      const btnss = document.querySelectorAll(".button-solid-primary-large");
-      const btns = Array.from(btnss);
-      const btn = btns[0];
+      const btn = document.querySelector(".button-solid-primary-large");
       const quit = document.querySelector('a[href="/"]')
       if (quit) {
         quit.click()
