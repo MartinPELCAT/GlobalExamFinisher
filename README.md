@@ -9,7 +9,7 @@ Sur la page https://exam.global-exam.com/library/study-sheets/categories/grammar
 
 Dans la console : 
 ```javascript
-const buttons = document.querySelectorAll("a.button-solid-primary-small");
+const buttons = document.querySelectorAll("a.button-outline-primary-small");
 for (let index = 0; index < 40; index++) {
   setTimeout((idx) => {
     window.open(buttons[idx].href);
